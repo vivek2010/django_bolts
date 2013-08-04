@@ -1,0 +1,42 @@
+{%if field.is_hidden %}
+	{{field}}
+{%else %}
+<div class="control-group {{field_name}} {{field_class}} {%if field.errors%} error {%endif%}" >	
+	{%if widget_class == 'checkbox-input' %}
+			<div class="control-label">
+				<label> 				
+					{{field}}&nbsp;&nbsp;				
+					{{field.label}}
+				</label>				 			
+			</div>	
+			{%if field.help_text%} <div class="help-inline">{{field.help_text}}</div> {%endif %}		
+			{%if field.errors%}
+				{{field.errors}}
+			{%endif %}		
+	{%else %}
+		{%if layout == 'horizontal'%}
+			<div class="control-label"> 
+				{{field.label_tag()}} 			 
+			</div>	
+			<div class="controls {{widget_class}}" {{attributes}}>
+				{{field}}
+			</div>
+			{%if field.help_text%} <div class="help-inline">{{field.help_text}}</div> {%endif %}		
+			{%if field.errors%}
+				{{field.errors}}
+			{%endif %}	
+		{%else%}
+			<div class="control-label"> 
+				{{field.label_tag()}}
+				{%if field.help_text%} <div class="help-inline">{{field.help_text}}</div> {%endif %} 
+			</div>	
+			<div class="controls {{widget_class}}" {{attributes}}>
+				{{field}}
+			</div>
+			{%if field.errors%}
+				{{field.errors}}
+			{%endif %}
+		{%endif %}
+	{%endif %}
+</div>
+{%endif %}
